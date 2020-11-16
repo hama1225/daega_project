@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -8,23 +9,30 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<!-- <annotation-driven /> -->
-<mvc:annotation-driven />
+	
+	<!-- 컴포넌트 디폴트 설정, HandlerMapping과 HandlerAdapter를 Bean으로 등록 -->
+	<mvc:annotation-driven />
+	
+	<!-- DispatcherServlet이 처리 못한 요청을 해당 Handler가 DefaultServlet이 처리하도록 넘김 -->
+	<!-- web.xml에 DispatcherServlet 설정 있음 -->
+	<mvc:default-servlet-handler />
 
-<mvc:default-servlet-handler />
-
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<!--/WEB-INF/views/hello.jsp -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- 원래 WEB-INF/views/임 -->
 		<beans:property name="prefix" value="/view/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!--/WEB-INF/views/hello.jsp  -->
+	<!-- 해당 패키지 내의 클래스와 Annotation을 확인 후 Bean 인스턴스로 생성 -->
 	<context:component-scan base-package="daega.web" />
-	<!-- <context:component-scan base-package="com.test.controller" /> -->
 	
 </beans:beans>

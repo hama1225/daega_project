@@ -15,26 +15,27 @@
 		<result property="userinfo_auth" column="USERINFO_AUTH" />
 	</resultMap>
 	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. resultMap="MemberResultMap" -->
-	<select id="getUers" resultType="user">
+	<select id="getUers" resultType="daega.web.user.vo.User">
 		SELECT * FROM userinfo
 	</select>
-	<select id="selectUser" resultType="daega.web.user.vo.User" parameterType="String">
+	<!-- /WEB-INF/mybatisAlias.xml에서 alias 설정했기 때문에 daega.web.user.vo.User를 user로 써도 됨-->
+	<select id="selectUser" resultType="user" parameterType="String">
 		SELECT * FROM userinfo WHERE userinfo_id = #{userinfo_id} AND userinfo_password = #{userinfo_password}
 	</select>
-	<select id="selectByEmail" resultType="daega.web.user.vo.User">
+	<select id="selectByEmail" resultType="user">
 		SELECT userinfo_email, userinfo_name FROM userinfo WHERE userinfo_email = #{userinfo_email}
 	</select>
-	<select id="selectById" resultType="daega.web.user.vo.User">
+	<select id="selectById" resultType="user">
 		SELECT userinfo_id, userinfo_name FROM userinfo WHERE userinfo_id = #{userinfo_id}
 	</select>
-	<select id="selectByNickname" resultType="daega.web.user.vo.User">
+	<select id="selectByNickname" resultType="user">
 		SELECT userinfo_nickname, userinfo_name FROM userinfo WHERE userinfo_nickname = #{userinfo_nickname}
 	</select>
 	
 	<select id="loginCheck" resultType="String">
 		SELECT userinfo_name FROM userinfo WHERE userinfo_id = #{userinfo_id} AND userinfo_password = #{userinfo_password}
 	</select>
-	<select id="viewUser" resultType="daega.web.user.vo.User">
+	<select id="viewUser" resultType="user">
 		SELECT * FROM userinfo WHERE userinfo_id = #{userinfo_id} AND userinfo_password = #{userinfo_password}
 	</select>
 	<select id="getUpdateUser" resultType="user"
@@ -43,12 +44,12 @@
 	</select>
 	
 	<!-- parameterType 에는 구문에 전달될 파라미터의 패키지 경로를 포함한 전체 클래명이나 별칭이 들어간다  -->
-	<insert id="insertUser" parameterType="daega.web.user.vo.User" >
+	<insert id="insertUser" parameterType="user" >
 		INSERT INTO userinfo values(#{userinfo_id},#{userinfo_password},#{userinfo_name},#{userinfo_nickname},#{userinfo_email},#{userinfo_grade},'user')
 	</insert>
 	
 	<!-- update는 생략한다. -->
-	<update id="updateUser" parameterType="daega.web.user.vo.User">
+	<update id="updateUser" parameterType="user">
 		UPDATE userinfo SET userinfo_id = #{userinfo_id}, userinfo_password = #{userinfo_password}, userinfo_name = #{userinfo_name}, userinfo_nickname = #{userinfo_nickname}, userinfo_grade = #{userinfo_grade}
 		WHERE userinfo_id=#{userinfo_id}
 	</update>

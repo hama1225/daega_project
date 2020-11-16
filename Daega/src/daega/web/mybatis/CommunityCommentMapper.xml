@@ -14,7 +14,7 @@
 		<result property="userinfo_id" column="USERINFO_ID" />
 	</resultMap>
 	
-	<select id="getCommunityCommentList" resultType="daega.web.community.vo.CommunityComment">
+	<select id="getCommunityCommentList" resultType="communityComment">
   	select * from COMMUNITYCOMMENT WHERE community_num = #{community_num} ORDER BY community_num DESC
 	</select>
 	
@@ -23,7 +23,7 @@
 		values(#{community_num},communityComment_seq.nextval,#{communityComment_writer},CURRENT_TIMESTAMP,#{communityComment_content},#{userinfo_id})
 	</insert>
 	
-	<update id="updateCommunityComment" parameterType="daega.web.community.vo.CommunityComment">
+	<update id="updateCommunityComment" parameterType="communityComment">
 		<![CDATA[UPDATE community SET community_date = CURRENT_TIMESTAMP, community_content = #{community_content} WHERE community_num = #{community_num}]]>
 	</update>
 	
@@ -31,7 +31,7 @@
 		SELECT COUNT(*) FROM community WHERE community_num = #{community_num} AND community_password = #{community_password}
 	</select>
 	
-	<select id="getCommunity" resultType="daega.web.community.vo.Community" parameterType="int">
+	<select id="getCommunity" resultType="communityComment" parameterType="int">
 		SELECT * FROM community WHERE community_num = #{community_num}
 	</select>
 	

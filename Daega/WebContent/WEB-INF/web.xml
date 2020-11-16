@@ -13,6 +13,9 @@
 	</listener>
 
 	<!-- Processes application requests -->
+	<!-- DispatcherServlet의 매핑이 /로 지정되면 jsp를 제외한 모든 요청이
+		 Dispatcher Servelt으로 가기 때문에 DefaultServlet이 html,css 요청을 처리 못함	
+	-->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

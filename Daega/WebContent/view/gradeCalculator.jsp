@@ -30,12 +30,23 @@ table{
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	function rowAdd(){
+		var trCnt = $('#myTable tr').length;
+		if(trCnt<11){
+			var innserHtml = "";
+			innerHtml += ''
+		}
+	}
+</script>
 </head>
 <body>
 <jsp:include page="/Header.jsp"/>
 <br/>
 <button type="button" class="btn btn-default" onclick="performanceCalculator">목표학점</button>
 
+<button type="button" class="btn btn-default" onclick="rowAdd();">항목추가</button>
+<button type="button" class="btn btn-default" onclick="rowDelete();">항목삭제</button>
 
 
 	<form name=form method = "POST">
@@ -71,6 +82,7 @@ table{
 		<td>
 			<input type="checkbox" name="major" value="major">
 		</td>
+		</tr>
 		<tr>
 		<td>2</td>
 		<td><input type="text" name="subject"  placeholder="과목"/></td>

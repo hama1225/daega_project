@@ -80,7 +80,7 @@ public class CommunityController {
 		@RequestMapping(value="/removeCommunity")
 		public String removeCommunity(@RequestParam("num") int num) {
 			communityService.removeCommunity(num);
-			return "redirect:/communityBoardList";
+			return "redirect://communityBoardList";
 		}
 		
 		// 수정 버튼 누를시
